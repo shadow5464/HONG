@@ -1,4 +1,4 @@
-package study;
+package study_01;
 
 public class main {
 
@@ -7,7 +7,7 @@ public class main {
 
 	}
 
-	public int factorial(int n) {
+	public static int factorial(int n) {
 		if (n < 2) {
 			return 1;
 		} else {
