@@ -4,61 +4,54 @@ import java.util.Scanner;
 
 //1,2,3 으로 3자리수 만들기
 public class mainF {
+
 	static int min = 0;
 
 	public static void main(String[] args) {
+
 		Scanner sc = new Scanner(System.in);
 		int inputCount = sc.nextInt();
 		for (int c = 0; c < inputCount; c++) {
-			int itemCount = sc.nextInt();
-			int arr[] = new int[itemCount - 1];
-			for (int i = 0; i < itemCount - 1; i++) {
-				arr[i] = i + 1;
+			int jCount = sc.nextInt();
+			int bC[] = new int[jCount];
+
+			for (int i = 0; i < jCount - 1; i++) {
+				bC[i] = sc.nextInt();
 			}
-			int values[][] = new int[itemCount][itemCount];
-			for (int i = 0; i < itemCount; i++) {
-				for (int j = 0; j < itemCount; j++) {
-					values[i][j] = sc.nextInt();
+
+			int startPoint = 0;
+			int gage = bC[0];
+
+			int newGate = bC[0];
+			int newPoint = 0;
+			int chgCount = 0;
+
+			while (true) {
+				// System.out.print(startPoint + "  ");
+				if ((startPoint + gage) >= jCount - 1) {
+					break;
 				}
+
+				newGate = 0;
+				for (int i = startPoint + 1; i <= startPoint + gage
+						&& i < jCount; i++) {
+					if (newGate < bC[i]) {
+						newGate = bC[i];
+						newPoint = i;
+					}
+				}
+				startPoint = newPoint;
+				gage = newGate;
+				chgCount++;
+				// startPoint++;
 			}
-			min = 9999;
-			perm(values, arr, 0);
-
-			System.out.println(min);
-		}
-
-	}
-
-	public static void perm(int values[][], int[] arr, int pivot) {
-		if (pivot == arr.length) {
-			print(values, arr);
-			return;
-		}
-		for (int i = pivot; i < arr.length; i++) {
-			swap(arr, i, pivot);
-			perm(values, arr, pivot + 1);
-			swap(arr, i, pivot);
+			System.out.println(String.format("#%d %d", c + 1, chgCount));
 		}
 	}
-
-	public static void swap(int[] arr, int i, int j) {
-		int temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
-	}
-
-	public static void print(int values[][], int[] arr) {
-		int x1 = 0;
-		int x2 = arr[0];
-		int temp = values[x1][x2];
-		for (int i = 0; i < arr.length - 1; i++) {
-			temp += values[arr[i]][arr[i + 1]];
-			x2 = arr[i + 1];
-		}
-		temp += values[x2][0];
-		if (temp < min) {
-			min = temp;
-		}
-	}
-
 }
+
+/**************************************************************
+ * Problem: 1029 User: shadow5464 Language: Java Result: Accepted Time:310 ms
+ * Memory:7212 kb
+ ****************************************************************/
+
