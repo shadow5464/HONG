@@ -1,7 +1,9 @@
 package study_01;
-
+//ddddddddㅇㅇㅇㅇㅁㅇㅁㅇㄴ
 public class main {
 
+	
+	
 	public static void main(String[] args) {
 		System.out.println(factorial(8));
 
